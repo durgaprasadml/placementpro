@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Referral Feed</h2>
+<div class="card p-3">
+  <ul class="list-group">
+    {% for post in posts %}
+      <li class="list-group-item">
+        <strong>{{ post.title }}</strong> by {{ post.alumni.user.username }}<br/>
+        {{ post.description }}<br/>
+        {% if post.apply_link %}
+          <a href="{{ post.apply_link }}" target="_blank">Apply Link</a>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li class="list-group-item">No referrals yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

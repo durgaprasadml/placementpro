@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Alumni Dashboard</h2>
+<div class="row">
+  <div class="col-md-5">
+    <div class="card p-3 mb-3">
+      <h5>Post Job Referral</h5>
+      <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Post Referral</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="card p-3">
+      <h5>Your Posts</h5>
+      <ul class="list-group">
+        {% for post in posts %}
+          <li class="list-group-item">
+            <strong>{{ post.title }}</strong><br/>
+            {{ post.description }}
+          </li>
+        {% empty %}
+          <li class="list-group-item">No referral posts yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
